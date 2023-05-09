@@ -1,20 +1,20 @@
 ## The functions create the inverse matrix 
-## from the MASS libary
+## from the MASS library
 
 ## makeChaheMatrix consists of of set, get, setinv, getinv fuctions
 
 library(MASS)
 makeCacheMatrix <- function(x = matrix()){
-  inv <- NULL # initializes inverse as NULL
+  inv <- NULL # sets inverse as NULL 
   set <- function(y){
                     x<<-y
                     inv<<-NULL
                     }
-  get<-function()x    #function to get matrix X
+  get<-function()x    #this is how to get matrix X
   setinv <- function(inverse)inv<<-inverse
   getinv <-function(){
                      inver<-ginv(x)
-                     inver %*% x     #function to obtain the inverse of matrix
+                     inver %*% x     #The function calculates the inverse of a matrix
                      }
   list(set= set, get= get, 
        setinv = setinv,
@@ -22,13 +22,13 @@ makeCacheMatrix <- function(x = matrix()){
 }
 
 
-## This function is used to obtain cached data (not repeat calculations over and over)
+## Function developed to obtain cached data (not repeat calculations over again)
 
 cacheSolve <- function(x, ...) {
   inv<-x$getinv()
   if(!is.null(inv)){
-                    message("getting chached data!")
-                    return(inv)  ## returns inverse values
+                    message("getting chached")
+                    return(inv)  ## provides the inverse values
   }
   data <- x$get()
   m <- mean(data, ...)
